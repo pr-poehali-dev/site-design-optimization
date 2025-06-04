@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Современный веб-сайт с оптимизацией и адаптивным дизайном">
-    <meta name="keywords" content="веб-разработка, оптимизация, современный дизайн">
-    <meta name="author" content="Поехали!">
+    <meta name="description" content="SmartCare - профессиональный уход за питомцами, ветеринарные услуги и зоомагазин">
+    <meta name="keywords" content="ветеринария, уход за животными, зоомагазин, груминг">
+    <meta name="author" content="SmartCare">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yoursite.com/">
-    <meta property="og:title" content="Современный оптимизированный сайт">
-    <meta property="og:description" content="Быстрый и красивый сайт с современными технологиями">
+    <meta property="og:url" content="https://smartcare.ru/">
+    <meta property="og:title" content="SmartCare - Уход за питомцами">
+    <meta property="og:description" content="Профессиональный уход за питомцами с любовью">
     
     <!-- Preconnect для шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <title>Современный сайт | Оптимизация и дизайн</title>
+    <title>SmartCare - PET CARE Humans&Animals</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
@@ -29,14 +29,19 @@
         <nav class="nav">
             <div class="nav-container">
                 <div class="logo">
-                    <h2>Поехали!</h2>
+                    <div class="logo-icon">🐾</div>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Главная</a></li>
-                    <li><a href="#about" class="nav-link">О нас</a></li>
-                    <li><a href="#services" class="nav-link">Услуги</a></li>
-                    <li><a href="#contact" class="nav-link">Контакты</a></li>
+                    <li><a href="#home" class="nav-link">About Us</a></li>
+                    <li><a href="#services" class="nav-link">Our Services</a></li>
+                    <li><a href="#shop" class="nav-link">Products</a></li>
+                    <li><a href="#blog" class="nav-link">Pet Care</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline-small">Log In</button>
+                    <button class="btn btn-primary-small">Book Now</button>
+                </div>
                 <button class="hamburger" aria-label="Открыть меню">
                     <span></span>
                     <span></span>
@@ -50,48 +55,76 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Создаём <span class="highlight">современные</span> веб-решения</h1>
-                <p class="hero-description">Быстрые, красивые и оптимизированные сайты с использованием передовых технологий веб-разработки</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary">Начать проект</button>
-                    <button class="btn btn-secondary">Узнать больше</button>
+                <div class="hero-badge">
+                    Julius Pestok Street 21st Moscow<br>
+                    📞 7 905 505 5514<br>
+                    <small>Quality First Since a day</small>
+                </div>
+                <h1 class="hero-title">PET CARE<br><span class="highlight">Humans&Animals</span></h1>
+                <p class="hero-description">At Pawpad's leading animal health company, VetCrCare is driven by a singular purpose: to remove barriers that sometimes prevented by advancing care for animals.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icons">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-icon">👨‍⚕️</div>
+                        </div>
+                        <div class="stat-number">100+ Reviews</div>
+                    </div>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="floating-card">
-                    <div class="card-content">
-                        <div class="metric">
-                            <span class="metric-number">98%</span>
-                            <span class="metric-label">Скорость</span>
-                        </div>
-                    </div>
-                </div>
+                <img src="https://cdn.poehali.dev/files/53dd1957-7067-48eb-a11d-f3c4f8504515.png" alt="Cute dog" class="hero-image">
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="about" class="features">
+    <!-- Welcome Section -->
+    <section class="welcome">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Почему выбирают нас</h2>
-                <p class="section-subtitle">Мы создаём веб-сайты нового поколения</p>
+            <div class="welcome-header">
+                <h2>Welcome to SmartCare</h2>
+                <a href="#" class="view-more">🐾 View More</a>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Молниеносная скорость</h3>
-                    <p class="feature-description">Оптимизация на уровне кода обеспечивает мгновенную загрузку страниц</p>
+            
+            <div class="welcome-grid">
+                <div class="welcome-card main-card">
+                    <img src="https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=300&h=200&fit=crop&crop=center" alt="Our clinic">
+                    <div class="card-content">
+                        <h3>About us</h3>
+                        <p>SmartCare is a digital platform for pet owners and pet owners. We a segment of creating a future through tech.</p>
+                        <button class="btn btn-dark">Read More</button>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Адаптивный дизайн</h3>
-                    <p class="feature-description">Идеальное отображение на всех устройствах и экранах</p>
+
+                <div class="welcome-card">
+                    <div class="card-icon">📖</div>
+                    <h3>Our Story</h3>
+                    <p>Company to organize career. Camera System in out savings business loan.</p>
+                    <button class="btn btn-dark">Read More</button>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">Современный UI/UX</h3>
-                    <p class="feature-description">Интуитивный интерфейс с красивыми анимациями и переходами</p>
+
+                <div class="welcome-card">
+                    <div class="card-icon">👥</div>
+                    <h3>Join us</h3>
+                    <p>Way our SmartCare business division giving from a regional.</p>
+                    <button class="btn btn-dark">Contact Sales</button>
+                </div>
+
+                <div class="welcome-card">
+                    <div class="card-icon">👨‍💼</div>
+                    <h3>Executive Team</h3>
+                    <p>Company to organize career. Camera System in out savings business loan.</p>
+                    <button class="btn btn-dark">Read More</button>
+                </div>
+
+                <div class="welcome-card">
+                    <div class="card-icon">🏆</div>
+                    <h3>Awards</h3>
+                    <p>Company to organize career. Smart Career System in out only business loan.</p>
+                    <button class="btn btn-dark">Contact Sales</button>
                 </div>
             </div>
         </div>
@@ -101,84 +134,186 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Наши услуги</h2>
-                <p class="section-subtitle">Полный цикл веб-разработки</p>
+                <h2>Our Company Services</h2>
+                <a href="#" class="view-more">🐾 View More</a>
             </div>
+            
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Веб-разработка</h3>
-                        <span class="service-price">от 50,000₽</span>
+                <div class="service-card surgery">
+                    <div class="service-content">
+                        <h3>Surgery</h3>
+                        <p>At VetCrCare, surgery has been a part of veterinary care since the company's founding. It centers dedicated surgical procedures with the most experienced & equipped surgical options...</p>
+                        <button class="btn btn-white">Read More</button>
                     </div>
-                    <ul class="service-features">
-                        <li>Современный дизайн</li>
-                        <li>Адаптивная вёрстка</li>
-                        <li>SEO-оптимизация</li>
-                        <li>Техническая поддержка</li>
-                    </ul>
-                    <button class="btn btn-outline">Заказать</button>
+                    <div class="service-icon">💉</div>
                 </div>
-                <div class="service-card featured">
-                    <div class="service-badge">Популярный</div>
-                    <div class="service-header">
-                        <h3>Интернет-магазин</h3>
-                        <span class="service-price">от 120,000₽</span>
+
+                <div class="service-card healthcare">
+                    <div class="service-content">
+                        <h3>Healthcare</h3>
+                        <p>At VetCrCare, surgery has been a part of veterinary care since the company's founding. It centers dedicated surgical procedures with the most experienced & equipped surgical options...</p>
+                        <button class="btn btn-white">Read More</button>
                     </div>
-                    <ul class="service-features">
-                        <li>Каталог товаров</li>
-                        <li>Система платежей</li>
-                        <li>Админ-панель</li>
-                        <li>Интеграции</li>
-                    </ul>
-                    <button class="btn btn-primary">Заказать</button>
+                    <div class="service-icon">🏥</div>
                 </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Поддержка</h3>
-                        <span class="service-price">от 15,000₽/мес</span>
+
+                <div class="service-card grooming">
+                    <div class="service-content">
+                        <h3>Grooming</h3>
+                        <p>Devoted dog grooming services focus on bringing out your pet's natural beauty while ensuring their comfort and health. Our experienced groomers use only premium products...</p>
+                        <button class="btn btn-white">Read More</button>
                     </div>
-                    <ul class="service-features">
-                        <li>Обновления контента</li>
-                        <li>Резервное копирование</li>
-                        <li>Мониторинг безопасности</li>
-                        <li>Техническая поддержка</li>
-                    </ul>
-                    <button class="btn btn-outline">Заказать</button>
+                    <div class="service-icon">✂️</div>
+                </div>
+
+                <div class="service-card daycare">
+                    <div class="service-content">
+                        <h3>Daycare</h3>
+                        <p>A safe and fun environment for your furry friend to socialize and play while you're away. Our certified staff ensures your pet gets the attention and care they deserve...</p>
+                        <button class="btn btn-white">Read More</button>
+                    </div>
+                    <div class="service-icon">🏠</div>
+                </div>
+
+                <div class="service-card consultation">
+                    <div class="service-content">
+                        <h3>Make a meet</h3>
+                        <p>Schedule a consultation with our expert veterinarians to discuss your pet's health and wellness. We provide comprehensive examinations and personalized care plans...</p>
+                        <button class="btn btn-dark">Book Now</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Pet Advice Section -->
+    <section class="pet-advice">
         <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>Готовы начать проект?</h2>
-                    <p>Свяжитесь с нами для обсуждения вашего проекта</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <span class="contact-icon">📧</span>
-                            <span>hello@poehali.dev</span>
-                        </div>
-                        <div class="contact-method">
-                            <span class="contact-icon">📱</span>
-                            <span>+7 (999) 123-45-67</span>
-                        </div>
+            <div class="advice-content">
+                <div class="advice-text">
+                    <h2>Pet's Habits & Advices</h2>
+                    <h3>Why Dogs Bark and Curbing Excessive Barking</h3>
+                    <p>No one should expect a dog to never bark. That's as unreasonable as expecting a child to never talk. But some dogs bark excessively. If that's a problem in your home, the first step is figuring out what causes your dog to bark too much. Once you know why they are barking, you can start to treat their barking problem.</p>
+                    <button class="btn btn-white">Read More</button>
+                </div>
+                <div class="advice-image">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=300&fit=crop&crop=center" alt="Dog with headphones">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2>Shop</h2>
+                <a href="#" class="view-more">🐾 View More</a>
+            </div>
+            
+            <div class="shop-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=200&h=150&fit=crop&crop=center" alt="Toys">
+                    </div>
+                    <h4>Toys</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583336663277-620dc1996580?w=200&h=150&fit=crop&crop=center" alt="Collar">
+                    </div>
+                    <h4>Collar</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581888227599-779811939961?w=200&h=150&fit=crop&crop=center" alt="Bed">
+                    </div>
+                    <h4>Bed</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=200&h=150&fit=crop&crop=center" alt="Bowl">
+                    </div>
+                    <h4>Bowl</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583932255097-b5a8c0d3f59e?w=200&h=150&fit=crop&crop=center" alt="Shampoo">
+                    </div>
+                    <h4>Shampoo</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-large">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300&h=200&fit=crop&crop=center" alt="Happy dog">
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=200&h=150&fit=crop&crop=center" alt="Container">
+                    </div>
+                    <h4>Container</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1553736026-0d54ac2b715d?w=200&h=150&fit=crop&crop=center" alt="Cat's Toys">
+                    </div>
+                    <h4>Cat's Toys</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583336663277-620dc1996580?w=200&h=150&fit=crop&crop=center" alt="Clothes">
+                    </div>
+                    <h4>Clothes</h4>
+                    <button class="btn btn-dark">Buy now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Blog</h2>
+                <a href="#" class="view-more">🐾 View More</a>
+            </div>
+            
+            <div class="blog-content">
+                <h3>Don't forget to take care of your pets!</h3>
+                
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <img src="https://images.unsplash.com/photo-1559190394-df5a28aab5c5?w=150&h=120&fit=crop&crop=center" alt="Bathing">
+                        <h4>Bathing</h4>
+                    </div>
+
+                    <div class="blog-card">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=150&h=120&fit=crop&crop=center" alt="Socialization">
+                        <h4>Socialization</h4>
+                    </div>
+
+                    <div class="blog-card">
+                        <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=150&h=120&fit=crop&crop=center" alt="Relationship">
+                        <h4>Relationship</h4>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Ваше имя" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Сообщение" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Отправить сообщение</button>
-                </form>
+                
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1503256207711-2d882432b7f3?w=300&h=250&fit=crop&crop=center" alt="Black cat">
+                </div>
             </div>
         </div>
     </section>
@@ -187,19 +322,27 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>Поехали!</h3>
-                    <p>Создаём веб-сайты будущего</p>
+                <div class="footer-info">
+                    <h4>Take care of your pets!</h4>
+                    <div class="social-links">
+                        <span>Follow us in social:</span>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook">f</a>
+                            <a href="#" class="social-icon twitter">t</a>
+                            <a href="#" class="social-icon instagram">📷</a>
+                        </div>
+                    </div>
+                    <p class="copyright">2024<br>by Pet Playlist</p>
                 </div>
-                <div class="footer-links">
-                    <a href="#home">Главная</a>
-                    <a href="#about">О нас</a>
-                    <a href="#services">Услуги</a>
-                    <a href="#contact">Контакты</a>
+                
+                <div class="footer-newsletter">
+                    <h4>MailBox</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                    <p class="footer-copyright">© 2023 "Humans&Animals"</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Поехали! Все права защищены.</p>
             </div>
         </div>
     </footer>

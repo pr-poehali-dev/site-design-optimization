@@ -1,4 +1,4 @@
-// Optimized JavaScript with performance best practices
+// SmartCare Pet Care Website JavaScript
 (function () {
   "use strict";
 
@@ -8,10 +8,11 @@
     hamburger: document.querySelector(".hamburger"),
     navMenu: document.querySelector(".nav-menu"),
     navLinks: document.querySelectorAll(".nav-link"),
-    contactForm: document.querySelector(".contact-form"),
-    featureCards: document.querySelectorAll(".feature-card"),
+    newsletterForm: document.querySelector(".newsletter-form"),
     serviceCards: document.querySelectorAll(".service-card"),
-    heroButtons: document.querySelectorAll(".hero-buttons .btn"),
+    productCards: document.querySelectorAll(".product-card"),
+    blogCards: document.querySelectorAll(".blog-card"),
+    buttons: document.querySelectorAll(".btn"),
   };
 
   // Utility functions
@@ -113,28 +114,19 @@
     }
   }
 
-  // Form handling with validation
-  function initContactForm() {
-    if (!elements.contactForm) return;
+  // Newsletter form handling
+  function initNewsletterForm() {
+    if (!elements.newsletterForm) return;
 
-    elements.contactForm.addEventListener("submit", async function (e) {
+    elements.newsletterForm.addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      const formData = new FormData(this);
+      const emailInput = this.querySelector('input[type="email"]');
       const submitButton = this.querySelector('button[type="submit"]');
       const originalText = submitButton.textContent;
+      const email = emailInput.value.trim();
 
-      // Basic validation
-      const name = this.querySelector('input[type="text"]').value.trim();
-      const email = this.querySelector('input[type="email"]').value.trim();
-      const message = this.querySelector("textarea").value.trim();
-
-      if (!name || !email || !message) {
-        showNotification("Пожалуйста, заполните все поля", "error");
-        return;
-      }
-
-      if (!isValidEmail(email)) {
+      if (!email || !isValidEmail(email)) {
         showNotification("Пожалуйста, введите корректный email", "error");
         return;
       }
@@ -145,12 +137,12 @@
 
       try {
         // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
 
-        showNotification("Сообщение успешно отправлено!", "success");
-        this.reset();
+        showNotification("Спасибо за подписку! 🐾", "success");
+        emailInput.value = "";
       } catch (error) {
-        showNotification("Произошла ошибка при отправке", "error");
+        showNotification("Произошла ошибка при подписке", "error");
       } finally {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
@@ -176,25 +168,26 @@
       top: "20px",
       right: "20px",
       padding: "15px 20px",
-      borderRadius: "8px",
+      borderRadius: "12px",
       color: "white",
       fontWeight: "500",
       zIndex: "10000",
       transform: "translateX(100%)",
       transition: "transform 0.3s ease",
       maxWidth: "300px",
+      fontSize: "0.95rem",
     });
 
     // Set background color based on type
     switch (type) {
       case "success":
-        notification.style.background = "#10B981";
+        notification.style.background = "#FF8B5A";
         break;
       case "error":
         notification.style.background = "#EF4444";
         break;
       default:
-        notification.style.background = "#6366F1";
+        notification.style.background = "#6B7EFF";
     }
 
     document.body.appendChild(notification);
@@ -231,26 +224,35 @@
       });
     }, observerOptions);
 
-    // Animate feature cards
-    elements.featureCards.forEach((card) => {
-      card.style.opacity = "0";
-      card.style.transform = "translateY(50px)";
-      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      observer.observe(card);
+    // Animate cards with stagger effect
+    const allCards = [
+      ...elements.serviceCards,
+      ...elements.productCards,
+      ...elements.blogCards,
+    ];
+
+    allCards.forEach((card, index) => {
+      if (card) {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(card);
+      }
     });
 
-    // Animate service cards
-    elements.serviceCards.forEach((card, index) => {
+    // Animate welcome cards
+    const welcomeCards = document.querySelectorAll(".welcome-card");
+    welcomeCards.forEach((card, index) => {
       card.style.opacity = "0";
-      card.style.transform = "translateY(50px)";
-      card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+      card.style.transform = "translateY(30px)";
+      card.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
       observer.observe(card);
     });
   }
 
-  // Button click effects
+  // Button click effects with ripple
   function initButtonEffects() {
-    elements.heroButtons.forEach((button) => {
+    elements.buttons.forEach((button) => {
       button.addEventListener("click", function (e) {
         // Create ripple effect
         const ripple = document.createElement("span");
@@ -267,7 +269,7 @@
         Object.assign(ripple.style, {
           position: "absolute",
           borderRadius: "50%",
-          background: "rgba(255, 255, 255, 0.6)",
+          background: "rgba(255, 255, 255, 0.4)",
           transform: "scale(0)",
           animation: "ripple 0.6s linear",
           pointerEvents: "none",
@@ -282,6 +284,13 @@
             ripple.parentNode.removeChild(ripple);
           }
         }, 600);
+
+        // Handle specific button actions
+        if (this.textContent.includes("Book Now")) {
+          showNotification("Booking system will be available soon! 🐾", "info");
+        } else if (this.textContent.includes("Buy now")) {
+          showNotification("Product added to cart! 🛒", "success");
+        }
       });
     });
   }
@@ -292,56 +301,78 @@
       const style = document.createElement("style");
       style.id = "ripple-styles";
       style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-            `;
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+        
+        .welcome-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card:hover {
+          transform: translateY(-3px);
+        }
+        
+        .product-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+      `;
       document.head.appendChild(style);
     }
   }
 
-  // Performance monitoring
-  function initPerformanceMonitoring() {
-    // Log Core Web Vitals
-    if ("web-vital" in window) {
-      import("https://unpkg.com/web-vitals@3.3.2/dist/web-vitals.js").then(
-        ({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-          getCLS(console.log);
-          getFID(console.log);
-          getFCP(console.log);
-          getLCP(console.log);
-          getTTFB(console.log);
-        },
-      );
-    }
+  // Floating animation for stat card
+  function initFloatingAnimation() {
+    const statCard = document.querySelector(".stat-card");
+    if (statCard) {
+      let start = null;
 
-    // Monitor page load performance
-    window.addEventListener("load", () => {
-      const perfData = performance.getEntriesByType("navigation")[0];
-      console.log(
-        "Page Load Time:",
-        perfData.loadEventEnd - perfData.loadEventStart,
-        "ms",
-      );
-    });
+      function animate(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+
+        const yOffset = Math.sin(progress * 0.002) * 5;
+        statCard.style.transform = `translateY(${yOffset}px)`;
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    }
   }
 
-  // Preload critical resources
-  function preloadResources() {
-    const criticalImages = [
-      // Add any critical images here
+  // Pet care tips rotation
+  function initPetTipsRotation() {
+    const tips = [
+      "🐕 Tip: Regular grooming keeps your pet healthy and happy!",
+      "🐱 Tip: Schedule annual vet checkups for your furry friends!",
+      "🐾 Tip: Daily walks are essential for your dog's wellbeing!",
+      "💧 Tip: Always keep fresh water available for your pets!",
+      "🏠 Tip: Create a comfortable space for your pet to rest!",
     ];
 
-    criticalImages.forEach((src) => {
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.as = "image";
-      link.href = src;
-      document.head.appendChild(link);
-    });
+    let currentTip = 0;
+
+    function showTip() {
+      if (Math.random() > 0.7) {
+        // 30% chance to show tip
+        showNotification(tips[currentTip], "info");
+        currentTip = (currentTip + 1) % tips.length;
+      }
+    }
+
+    // Show tip every 30 seconds
+    setInterval(showTip, 30000);
   }
 
   // Initialize everything when DOM is loaded
@@ -354,21 +385,17 @@
 
     initSmoothScrolling();
     initMobileMenu();
-    initContactForm();
+    initNewsletterForm();
     initScrollAnimations();
     initButtonEffects();
     addRippleAnimation();
-    preloadResources();
+    initFloatingAnimation();
+    initPetTipsRotation();
 
     // Add scroll listener
     window.addEventListener("scroll", handleHeaderScroll, { passive: true });
 
-    // Initialize performance monitoring in production
-    if (location.hostname !== "localhost") {
-      initPerformanceMonitoring();
-    }
-
-    console.log("🚀 Site initialized successfully!");
+    console.log("🐾 SmartCare website initialized successfully!");
   }
 
   // Wait for DOM to be ready
@@ -378,39 +405,80 @@
     init();
   }
 
-  // Handle page visibility changes for performance
+  // Handle page visibility changes
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-      // Pause animations and reduce activity when page is hidden
-      console.log("Page hidden - reducing activity");
+      console.log("Page hidden - pausing pet animations");
     } else {
-      // Resume normal activity when page is visible
-      console.log("Page visible - resuming activity");
+      console.log("Page visible - resuming pet care experience");
     }
   });
+
+  // Export utilities for external use
+  window.SmartCareUtils = {
+    showNotification: showNotification,
+    isValidEmail: isValidEmail,
+  };
 })();
 
-// Service Worker registration for PWA features (optional)
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("SW registered: ", registration);
-      })
-      .catch((registrationError) => {
-        console.log("SW registration failed: ", registrationError);
-      });
-  });
-}
+// Add some Easter egg interactions
+document.addEventListener("keydown", function (e) {
+  // Konami code for pet lovers: ↑↑↓↓←→←→BA
+  const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+  window.konamiSequence = window.konamiSequence || [];
+  window.konamiSequence.push(e.keyCode);
 
-// Export for potential use in other scripts
-window.SiteUtils = {
-  showNotification: function (message, type) {
-    // Reuse the notification function
-    const event = new CustomEvent("showNotification", {
-      detail: { message, type },
-    });
-    document.dispatchEvent(event);
-  },
-};
+  if (window.konamiSequence.length > konamiCode.length) {
+    window.konamiSequence.shift();
+  }
+
+  if (
+    window.konamiSequence.length === konamiCode.length &&
+    window.konamiSequence.every((key, index) => key === konamiCode[index])
+  ) {
+    // Easter egg: Rain of paw prints
+    const body = document.body;
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => {
+        const paw = document.createElement("div");
+        paw.innerHTML = "🐾";
+        paw.style.position = "fixed";
+        paw.style.left = Math.random() * window.innerWidth + "px";
+        paw.style.top = "-50px";
+        paw.style.fontSize = "2rem";
+        paw.style.zIndex = "10000";
+        paw.style.pointerEvents = "none";
+        paw.style.animation = "fall 3s linear forwards";
+
+        body.appendChild(paw);
+
+        setTimeout(() => {
+          if (paw.parentNode) {
+            paw.parentNode.removeChild(paw);
+          }
+        }, 3000);
+      }, i * 100);
+    }
+
+    // Add falling animation
+    if (!document.querySelector("#easter-egg-styles")) {
+      const style = document.createElement("style");
+      style.id = "easter-egg-styles";
+      style.textContent = `
+        @keyframes fall {
+          to {
+            transform: translateY(calc(100vh + 100px)) rotate(360deg);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    window.SmartCareUtils.showNotification(
+      "🐾 You found the pet lover's secret! 🐾",
+      "success",
+    );
+    window.konamiSequence = [];
+  }
+});
